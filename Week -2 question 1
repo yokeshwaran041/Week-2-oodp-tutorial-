@@ -1,0 +1,88 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    const int size = 100;
+    int arr[size];
+    int count = 0;
+    char choice;
+    int element, i;
+
+    do {
+        cout << "\na. Insert an element" << endl;
+        cout << "b. Delete an element" << endl;
+        cout << "c. Search for an element" << endl;
+        cout << "d. Display all elements" << endl;
+        cout << "e. Sort the array" << endl;
+        cout << "f. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 'a':
+                if (count < size) {
+                    cout << "Enter element to insert: ";
+                    cin >> element;
+                    arr[count++] = element;
+                } else {
+                    cout << "Array is full." << endl;
+                }
+                break;
+
+            case 'b':
+                cout << "Enter element to delete: ";
+                cin >> element;
+                for (i = 0; i < count; ++i) {
+                    if (arr[i] == element) {
+                        for (int j = i; j < count - 1; ++j) {
+                            arr[j] = arr[j + 1];
+                        }
+                        count--;
+                        cout << "Element deleted." << endl;
+                        break;
+                    }
+                }
+                if (i == count) {
+                    cout << "Element not found." << endl;
+                }
+                break;
+
+            case 'c':
+                cout << "Enter element to search: ";
+                cin >> element;
+                for (i = 0; i < count; ++i) {
+                    if (arr[i] == element) {
+                        cout << "Element found at position " << i << endl;
+                        break;
+                    }
+                }
+                if (i == count) {
+                    cout << "Element not found." << endl;
+                }
+                break;
+
+            case 'd':
+                cout << "Array elements: ";
+                for (i = 0; i < count; ++i) {
+                    cout << arr[i] << " ";
+                }
+                cout << endl;
+                break;
+
+            case 'e':
+                sort(arr, arr + count);
+                cout << "Array sorted." << endl;
+                break;
+
+            case 'f':
+                cout << "Exiting..." << endl;
+                break;
+
+            default:
+                cout << "Invalid choice." << endl;
+        }
+    } while (choice != 'f');
+
+    return 0;
+}
