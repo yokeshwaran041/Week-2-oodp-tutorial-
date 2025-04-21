@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int MAX = 100;
+    int marks[MAX];
+    int n = 0;
+    char choice;
+
+    do {
+        cout << "\na. Enter marks of N students" << endl;
+        cout << "b. Calculate average marks" << endl;
+        cout << "c. Find highest and lowest marks" << endl;
+        cout << "d. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 'a':
+                cout << "Enter number of students: ";
+                cin >> n;
+                if (n > MAX) n = MAX;
+                for (int i = 0; i < n; ++i) {
+                    cout << "Enter mark for student " << i + 1 << ": ";
+                    cin >> marks[i];
+                }
+                break;
+
+            case 'b':
+                if (n == 0) {
+                    cout << "No marks entered." << endl;
+                } else {
+                    int sum = 0;
+                    for (int i = 0; i < n; ++i) {
+                        sum += marks[i];
+                    }
+                    cout << "Average marks: " << (float)sum / n << endl;
+                }
+                break;
+
+            case 'c':
+                if (n == 0) {
+                    cout << "No marks entered." << endl;
+                } else {
+                    int max = marks[0], min = marks[0];
+                    for (int i = 1; i < n; ++i) {
+                        if (marks[i] > max) max = marks[i];
+                        if (marks[i] < min) min = marks[i];
+                    }
+                    cout << "Highest marks: " << max << endl;
+                    cout << "Lowest marks: " << min << endl;
+                }
+                break;
+
+            case 'd':
+                cout << "Exiting..." << endl;
+                break;
+
+            default:
+                cout << "Invalid choice." << endl;
+        }
+
+    } while (choice != 'd');
+
+    return 0;
+}
