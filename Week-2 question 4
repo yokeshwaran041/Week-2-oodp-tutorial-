@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    float x = 2.5;
+    int y = 3;
+    auto result = x / y;
+
+    cout << "The type of result is: " << typeid(result).name() << endl;
+    cout << "Result = " << result << endl;
+
+    return 0;
+}
